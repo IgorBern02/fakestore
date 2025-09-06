@@ -4,11 +4,13 @@ import {
   searchProducts,
   getCategories,
   getProductsByCategory,
-  type Product,
-  type Category,
 } from "./services/api";
 
+import { type Product, type Category } from "./services/types";
+import { ListIcon, XIcon } from "@phosphor-icons/react";
+
 function App() {
+  const [openMenu, setOpenMenu] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
@@ -60,9 +62,68 @@ function App() {
   if (loading) return <div className="p-4">Carregando...</div>;
 
   return (
-    <div className="p-4">
-      {/* Filtros */}
-      <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+    <div className="p-4 bg-red-600 text-white min-h-screen w-full flex flex-col items-center justify-center">
+      <header className="w-screen p-3 flex justify-between items-center mb-6 bg-pink-500">
+        <h1 className="text-3xl font-bold">Fake Store</h1>
+
+        {/* Botão hamburguer - visível só no mobile */}
+        <button
+          className="sm:hidden px-3 py-2 border rounded bg-white text-pink-500"
+          onClick={() => setOpenMenu(true)}
+        >
+          {openMenu ? <XIcon size={24} /> : <ListIcon size={24} />}
+        </button>
+      </header>
+
+      {/* Overlay + Menu com animação */}
+      <div
+        className={`fixed inset-0 bg-black/70 bg-opacity-40 z-50 transition-opacity ${
+          openMenu ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+        onClick={() => setOpenMenu(false)}
+      />
+
+      <div
+        className={`fixed top-0 left-0 h-full w-64 bg-white text-black p-4 z-50 transform transition-transform duration-300 overflow-y-auto ${
+          openMenu ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <h2 className="font-bold text-lg mb-2">Categorias</h2>
+        <button
+          onClick={() => {
+            setCategory("");
+            setSearch("");
+            setQuery("");
+            setPage(0);
+            setOpenMenu(false);
+          }}
+          className={`block w-full text-left p-2 rounded hover:bg-pink-200 ${
+            category === "" ? "bg-pink-300" : ""
+          }`}
+        >
+          Todas as categorias
+        </button>
+        {categories.map((cat) => (
+          <button
+            key={cat.slug}
+            onClick={() => {
+              setCategory(cat.slug);
+              setSearch("");
+              setQuery("");
+              setPage(0);
+              setOpenMenu(false);
+            }}
+            className={`block w-full text-left p-2 rounded hover:bg-pink-200 ${
+              category === cat.slug ? "bg-pink-300" : ""
+            }`}
+          >
+            {cat.name}
+          </button>
+        ))}
+      </div>
+
+      {/* Filtros desktop */}
+      <div className="hidden sm:flex w-screen p-3 justify-between items-center mb-6 gap-4 bg-blue-400">
         {/* Form de busca */}
         <form onSubmit={handleSubmit} className="flex gap-2 w-full sm:w-auto">
           <input
@@ -70,7 +131,7 @@ function App() {
             placeholder="Buscar produtos..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full max-w-md p-2 border rounded shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+            className="w-full max-w-md p-2 border rounded shadow-sm focus:outline-none focus:ring focus:ring-blue-300 text-black"
           />
           <button
             type="submit"
@@ -80,16 +141,16 @@ function App() {
           </button>
         </form>
 
-        {/* Dropdown de categorias */}
+        {/* Dropdown de categorias (desktop) */}
         <select
           value={category}
           onChange={(e) => {
             setPage(0);
             setCategory(e.target.value);
-            setSearch(""); // limpar busca se filtrar
+            setSearch("");
             setQuery("");
           }}
-          className="p-2 border rounded shadow-sm"
+          className="p-2 border rounded shadow-sm text-black"
         >
           <option value="">Todas as categorias</option>
           {categories.map((cat) => (
@@ -105,7 +166,7 @@ function App() {
         {products.map((p) => (
           <div
             key={p.id}
-            className="border p-4 rounded shadow hover:shadow-lg transition"
+            className="border p-4 rounded shadow hover:shadow-lg transition bg-white text-black"
           >
             <img
               src={p.thumbnail}
@@ -124,11 +185,11 @@ function App() {
           <button
             onClick={() => setPage((p) => Math.max(p - 1, 0))}
             disabled={page === 0}
-            className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+            className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50 text-black"
           >
             Anterior
           </button>
-          <span className="px-2 py-1 text-gray-700">
+          <span className="px-2 py-1 text-gray-200">
             Página {page + 1} de {totalPages}
           </span>
           <button

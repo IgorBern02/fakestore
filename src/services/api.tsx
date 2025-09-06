@@ -1,11 +1,5 @@
 import axios from "axios";
-
-export type Product = {
-  id: number;
-  title: string;
-  price: number;
-  thumbnail: string;
-};
+import type { Product, Category } from "./types";
 
 const api = axios.create({
   baseURL: "https://dummyjson.com",
@@ -22,12 +16,6 @@ export const searchProducts = (query: string, limit = 12, skip = 0) =>
   );
 
 export const getProduct = (id: number) => api.get<Product>(`/products/${id}`);
-
-export type Category = {
-  slug: string;
-  name: string;
-  url: string;
-};
 
 export const getCategories = () => api.get<Category[]>("/products/categories");
 
