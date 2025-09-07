@@ -6,10 +6,6 @@ export default {
       brand: "var(--color-brand)",
       surface: "var(--color-surface)",
     },
-    fontFamily: {
-      story: "var(--font-story), cursive",
-      roboto: "var(--font-roboto), sans-serif",
-    },
   },
   plugins: [],
 };
