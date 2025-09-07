@@ -37,7 +37,7 @@ export function SidebarMenu({
       )}
 
       <div
-        className={`fixed top-0 left-0 w-64 h-full bg-white text-black shadow-lg transform transition-transform duration-300 z-50 ${
+        className={`fixed top-0 left-0 w-64 h-full scrool-y-auto overflow-y-auto bg-white text-black shadow-lg transform transition-transform duration-300 z-50 ${
           openMenu ? "translate-x-0" : "-translate-x-full"
         }`}
       >

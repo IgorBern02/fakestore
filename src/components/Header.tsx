@@ -7,8 +7,8 @@ interface HeaderProps {
 
 export function Header({ openMenu, setOpenMenu }: HeaderProps) {
   return (
-    <header className="w-screen p-3 flex justify-between items-center mb-6 bg-pink-500">
-      <h1 className="text-3xl font-bold">Fake Store</h1>
+    <header className="w-screen p-3 flex justify-between items-center text-center ">
+      <h1 className="text-3xl font-story">Fake Store</h1>
 
       <button
         className="sm:hidden px-3 py-2 border rounded bg-white text-pink-500"
