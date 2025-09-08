@@ -5,4 +5,16 @@
 @theme {
   --font-story: Story Script, "cursive";
   --font-roboto: Roboto, "sans-serif";
+
+  --color-primary: #b1e5f2; /* azul */
+  --color-secondary: #272635; /* vermelho */
+  --color-muted: #6b7280; /* cinza */
+  --color-background: #fff;
+  --color-text: #000;
+}
+
+body {
+  font-family: var(--font-roboto);
+  background-color: var(--color-background);
+  color: var(--color-text);
 }

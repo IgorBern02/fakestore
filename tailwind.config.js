@@ -3,8 +3,15 @@ export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx,html}"],
   theme: {
     colors: {
-      brand: "var(--color-brand)",
-      surface: "var(--color-surface)",
+      background: "var(--color-background)",
+      primary: "var(--color-primary)",
+      secondary: "var(--color-secondary)",
+      muted: "var(--color-muted)",
+      text: "var(--color-text)",
+    },
+    fontFamily: {
+      story: ["var(--font-story)"],
+      roboto: ["var(--font-roboto)"],
     },
   },
   plugins: [],

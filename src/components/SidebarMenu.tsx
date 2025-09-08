@@ -37,21 +37,14 @@ export function SidebarMenu({
       )}
 
       <div
-        className={`fixed top-0 left-0 w-64 h-full scrool-y-auto overflow-y-auto bg-white text-black shadow-lg transform transition-transform duration-300 z-50 ${
+        className={`fixed top-0 left-0 w-64 md:w-96 h-full scrool-y-auto overflow-y-auto bg-white text-black shadow-lg transform transition-transform duration-300 z-50 ${
           openMenu ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <button
-          className="absolute top-4 right-4 text-xl font-bold"
-          onClick={() => setOpenMenu(false)}
-        >
-          ✕
-        </button>
-
         {/* Categorias */}
-        <ul className="flex flex-col gap-2">
+        <ul className="flex flex-col gap-2 md:text-lg">
           <li
-            className={`p-2 mt-12 rounded hover:bg-gray-200 cursor-pointer ${
+            className={`p-2 mt-4 rounded hover:bg-primary cursor-pointer ${
               category === "" ? "font-bold" : ""
             }`}
             onClick={() => {
@@ -67,7 +60,7 @@ export function SidebarMenu({
           {categories.map((cat) => (
             <li
               key={cat.slug}
-              className={`p-2 rounded hover:bg-gray-200 cursor-pointer ${
+              className={`p-2 rounded hover:bg-primary cursor-pointer ${
                 category === cat.slug ? "font-bold" : ""
               }`}
               onClick={() => {

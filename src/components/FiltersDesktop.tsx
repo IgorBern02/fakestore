@@ -1,5 +1,6 @@
 import type { FormEvent } from "react";
 import { type Category } from "../services/types";
+import { Button } from "./Button";
 
 interface FiltrosDesktopProps {
   query: string;
@@ -23,22 +24,23 @@ export function FiltersDesktop({
   categories,
 }: FiltrosDesktopProps) {
   return (
-    <div className="hidden sm:flex w-screen p-3 justify-between items-center mb-6 gap-4 bg-blue-400">
+    <div className="flex flex-col w-full p-3 justify-between items-center mb-6 gap-4 mt-18 ">
       {/* Busca */}
-      <form onSubmit={handleSubmit} className="flex gap-2 w-full sm:w-auto">
+      <form
+        onSubmit={handleSubmit}
+        className="flex gap-2 w-full justify-center items-center md:text-lg"
+      >
         <input
           type="text"
           placeholder="Buscar produtos..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full max-w-md p-2 border rounded shadow-sm focus:outline-none focus:ring focus:ring-blue-300 text-black"
+          className="w-full max-w-md p-2 border rounded shadow-sm focus:outline-none focus:ring focus:ring-secondary text-black"
         />
-        <button
-          type="submit"
-          className="px-4 py-2 bg-blue-500 text-white rounded"
-        >
-          Buscar
-        </button>
+        <Button
+          text="Buscar"
+          className="px-4 py-2 bg-secondary text-white rounded "
+        />
       </form>
 
       {/* Categorias */}
@@ -50,7 +52,7 @@ export function FiltersDesktop({
           setSearch("");
           setQuery("");
         }}
-        className="p-2 border rounded shadow-sm text-black"
+        className="hidden lg:flex p-2 border rounded shadow-sm text-black"
       >
         <option value="">Todas as categorias</option>
         {categories.map((cat) => (

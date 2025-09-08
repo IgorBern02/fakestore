@@ -62,41 +62,61 @@ function App() {
     setCategory("");
   };
 
-  if (loading) return <div className="p-4">Carregando...</div>;
+  if (loading) return <main className="p-4">Carregando...</main>;
 
   return (
-    <div className="p-4 bg-red-600 text-white min-h-screen w-full flex flex-col items-center justify-center">
+    <div className="bg-background text-text w-full min-h-screen flex flex-col">
+      {/* Cabeçalho */}
       <Header openMenu={openMenu} setOpenMenu={setOpenMenu} />
 
-      <SidebarMenu
-        openMenu={openMenu}
-        setOpenMenu={setOpenMenu}
-        // query={query}
-        setQuery={setQuery}
-        // handleSubmit={handleSubmit}
-        category={category}
-        setCategory={setCategory}
-        setPage={setPage}
-        setSearch={setSearch}
-        categories={categories}
-      />
+      {/* Navegação lateral */}
+      <aside>
+        <SidebarMenu
+          openMenu={openMenu}
+          setOpenMenu={setOpenMenu}
+          setQuery={setQuery}
+          category={category}
+          setCategory={setCategory}
+          setPage={setPage}
+          setSearch={setSearch}
+          categories={categories}
+        />
+      </aside>
 
-      <FiltersDesktop
-        query={query}
-        setQuery={setQuery}
-        handleSubmit={handleSubmit}
-        category={category}
-        setCategory={setCategory}
-        setPage={setPage}
-        setSearch={setSearch}
-        categories={categories}
-      />
+      {/* Conteúdo principal */}
+      <main className="flex-1 container mx-auto px-4 pt-10">
+        {/* Filtros e busca */}
+        <section aria-label="Filtros de produtos">
+          <FiltersDesktop
+            query={query}
+            setQuery={setQuery}
+            handleSubmit={handleSubmit}
+            category={category}
+            setCategory={setCategory}
+            setPage={setPage}
+            setSearch={setSearch}
+            categories={categories}
+          />
+        </section>
 
-      <ProductGrid products={products} />
+        {/* Lista de produtos */}
+        <section aria-label="Lista de produtos" className="mt-6">
+          <ProductGrid products={products} />
+        </section>
 
-      {total > limit && (
-        <Pagination page={page} setPage={setPage} totalPages={totalPages} />
-      )}
+        {/* Paginação */}
+        {total > limit && (
+          <nav
+            aria-label="Paginação de produtos"
+            className="mt-8 flex justify-center"
+          >
+            <Pagination page={page} setPage={setPage} totalPages={totalPages} />
+          </nav>
+        )}
+      </main>
+
+      {/* Rodapé (se você criar depois) */}
+      {/* <footer className="bg-gray-100 text-center py-4">...</footer> */}
     </div>
   );
 }
