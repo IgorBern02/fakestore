@@ -2,7 +2,7 @@ import type { FormEvent } from "react";
 import { type Category } from "../services/types";
 import { Button } from "./Button";
 
-interface FiltrosDesktopProps {
+interface FiltersProps {
   query: string;
   setQuery: (value: string) => void;
   handleSubmit: (e: FormEvent) => void;
@@ -13,7 +13,7 @@ interface FiltrosDesktopProps {
   categories: Category[];
 }
 
-export function FiltersDesktop({
+export function Filters({
   query,
   setQuery,
   handleSubmit,
@@ -22,7 +22,7 @@ export function FiltersDesktop({
   setPage,
   setSearch,
   categories,
-}: FiltrosDesktopProps) {
+}: FiltersProps) {
   return (
     <div className="flex flex-col w-full p-3 justify-between items-center mb-6 gap-4 mt-18 ">
       {/* Busca */}
@@ -39,7 +39,7 @@ export function FiltersDesktop({
         />
         <Button
           text="Buscar"
-          className="px-4 py-2 bg-secondary text-white rounded "
+          className="px-4 py-2 bg-primary hover:bg-primary-hover text-white rounded"
         />
       </form>
 

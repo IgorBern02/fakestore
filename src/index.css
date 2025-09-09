@@ -1,20 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Story+Script&display=swap");
+/* eslint-disable */
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Story+Script&display=swap");
 
 @import "tailwindcss";
 
 @theme {
   --font-story: Story Script, "cursive";
   --font-roboto: Roboto, "sans-serif";
+  --font-epilogue: "Epilogue", sans-serif;
 
-  --color-primary: #b1e5f2; /* azul */
-  --color-secondary: #272635; /* vermelho */
-  --color-muted: #6b7280; /* cinza */
-  --color-background: #fff;
-  --color-text: #000;
+  --color-background: #fffec7;
+  --color-primary: #f56218;
+  --color-primary-hover: #4f46e5;
+  --color-secondary: #ff9d2e;
+  /* --color-destaque: #f59e0b; */
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  /* --color-light: #f8fafc;
+  --color-border: #cbd5e1;
+  --color-dark: #0f172a;
+  --color-highlight: #facc15; */
 }
 
 body {
-  font-family: var(--font-roboto);
-  background-color: var(--color-background);
-  color: var(--color-text);
+  font-family: var(--font-epilogue);
+  background-color: var(--color-light);
+  color: var(--color-dark);
 }

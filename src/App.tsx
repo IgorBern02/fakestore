@@ -8,7 +8,7 @@ import {
 
 import { type Product, type Category } from "./services/types";
 import { Header } from "./components/Header";
-import { FiltersDesktop } from "./components/FiltersDesktop";
+import { Filters } from "./components/Filters";
 import { ProductGrid } from "./components/ProductGrid";
 import { Pagination } from "./components/Pagination";
 import { SidebarMenu } from "./components/SidebarMenu";
@@ -67,7 +67,15 @@ function App() {
   return (
     <div className="bg-background text-text w-full min-h-screen flex flex-col">
       {/* Cabeçalho */}
-      <Header openMenu={openMenu} setOpenMenu={setOpenMenu} />
+      <Header
+        openMenu={openMenu}
+        setOpenMenu={setOpenMenu}
+        categories={categories}
+        category={category}
+        setCategory={setCategory}
+        setQuery={setQuery}
+        setPage={setPage}
+      />
 
       {/* Navegação lateral */}
       <aside>
@@ -87,7 +95,7 @@ function App() {
       <main className="flex-1 container mx-auto px-4 pt-10">
         {/* Filtros e busca */}
         <section aria-label="Filtros de produtos">
-          <FiltersDesktop
+          <Filters
             query={query}
             setQuery={setQuery}
             handleSubmit={handleSubmit}

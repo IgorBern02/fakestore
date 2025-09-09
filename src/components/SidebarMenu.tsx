@@ -1,12 +1,15 @@
-// import type { FormEvent } from "react";
+import { useState } from "react";
 import { type Category } from "../services/types";
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  ShoppingCartIcon,
+} from "@phosphor-icons/react";
 
 interface SidebarMenuProps {
   openMenu: boolean;
   setOpenMenu: (value: boolean) => void;
-  //   query: string;
   setQuery: (value: string) => void;
-  //   handleSubmit: (e: FormEvent) => void;
   category: string;
   setCategory: (value: string) => void;
   setPage: (value: number) => void;
@@ -17,18 +20,17 @@ interface SidebarMenuProps {
 export function SidebarMenu({
   openMenu,
   setOpenMenu,
-  //   query,
   setQuery,
-  //   handleSubmit,
   category,
   setCategory,
   setPage,
   setSearch,
   categories,
 }: SidebarMenuProps) {
+  const [openDropdown, setOpenDropdown] = useState(false);
+
   return (
     <>
-      {/* Overlay (desfocar + escurecer o fundo) */}
       {openMenu && (
         <div
           className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
@@ -37,43 +39,73 @@ export function SidebarMenu({
       )}
 
       <div
-        className={`fixed top-0 left-0 w-64 md:w-96 h-full scrool-y-auto overflow-y-auto bg-white text-black shadow-lg transform transition-transform duration-300 z-50 ${
+        className={`fixed top-0 left-0 w-64 md:w-96 h-full overflow-y-auto bg-white text-black shadow-lg transform transition-transform duration-300 z-50 ${
           openMenu ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         {/* Categorias */}
-        <ul className="flex flex-col gap-2 md:text-lg">
-          <li
-            className={`p-2 mt-4 rounded hover:bg-primary cursor-pointer ${
-              category === "" ? "font-bold" : ""
-            }`}
-            onClick={() => {
-              setCategory("");
-              setSearch("");
-              setQuery("");
-              setPage(0);
-              setOpenMenu(false);
-            }}
-          >
-            Todas as categorias
-          </li>
-          {categories.map((cat) => (
-            <li
-              key={cat.slug}
-              className={`p-2 rounded hover:bg-primary cursor-pointer ${
-                category === cat.slug ? "font-bold" : ""
-              }`}
-              onClick={() => {
-                setCategory(cat.slug);
-                setSearch("");
-                setQuery("");
-                setPage(0);
-                setOpenMenu(false);
-              }}
+        <ul className="flex flex-col gap-5 mt-5 md:text-lg">
+          {/* Dropdown "Todas as categorias" */}
+          <li className="p-2 mt-4 rounded cursor-pointer">
+            <div
+              className="flex justify-center items-center gap-10"
+              onClick={() => setOpenDropdown((prev) => !prev)}
             >
-              {cat.name}
-            </li>
-          ))}
+              <span>Todas as categorias</span>
+              <span className="text-sm">
+                {openDropdown ? (
+                  <ArrowUpIcon size={22} />
+                ) : (
+                  <ArrowDownIcon size={22} />
+                )}
+              </span>
+            </div>
+
+            {/* Submenu */}
+            {openDropdown && (
+              <ul className="mt-2 flex flex-col gap-2">
+                <li
+                  className="p-2 rounded bg-primary cursor-pointer"
+                  onClick={() => {
+                    setCategory("");
+                    setSearch("");
+                    setQuery("");
+                    setPage(0);
+                    setOpenMenu(false);
+                  }}
+                >
+                  Ver tudo
+                </li>
+                {categories.map((cat) => (
+                  <li
+                    key={cat.slug}
+                    className={`w-full p-2 rounded hover:bg-primary cursor-pointer ${
+                      category === cat.slug ? "font-bold" : ""
+                    }`}
+                    onClick={() => {
+                      setCategory(cat.slug);
+                      setSearch("");
+                      setQuery("");
+                      setPage(0);
+                      setOpenMenu(false);
+                    }}
+                  >
+                    {cat.name}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+          <li>
+            <div>
+              <div className="flex justify-center items-center gap-23">
+                <span>Meu carrinho</span>
+                <span>
+                  <ShoppingCartIcon size={22} />
+                </span>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
     </>
