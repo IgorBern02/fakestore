@@ -18,11 +18,8 @@ export const Card = ({ products }: CardProps) => {
   return (
     <div className="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:text-lg">
       {products.map((p) => (
-        <Link to={`/buy/${p.id}`}>
-          <div
-            key={p.id}
-            className="relative rounded-3xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform duration-300 group"
-          >
+        <Link to={`/buy/${p.id}`} key={p.id}>
+          <div className="relative rounded-3xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform duration-300 group">
             {/* Imagem de fundo */}
             <img
               src={p.thumbnail}

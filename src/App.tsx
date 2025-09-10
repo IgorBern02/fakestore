@@ -12,6 +12,7 @@ import { Filters } from "./components/Filters";
 import { ProductGrid } from "./components/ProductGrid";
 import { Pagination } from "./components/Pagination";
 import { SidebarMenu } from "./components/SidebarMenu";
+import { Footer } from "./components/Footer";
 
 function App() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -125,6 +126,7 @@ function App() {
 
       {/* Rodapé (se você criar depois) */}
       {/* <footer className="bg-gray-100 text-center py-4">...</footer> */}
+      <Footer />
     </div>
   );
 }

@@ -25,7 +25,6 @@ export function Header({
   const [showSubHeader, setShowSubHeader] = useState(true);
   const [subHeaderHeight, setSubHeaderHeight] = useState(0);
   const subHeaderRef = useRef<HTMLDivElement>(null);
-  const [openDropdown, setOpenDropdown] = useState(false);
 
   // Esconde o SubHeader ao rolar
   useEffect(() => {
@@ -66,54 +65,46 @@ export function Header({
             </h1>
 
             {/* Menu Desktop */}
-            <div className="hidden lg:flex items-center gap-6 relative h-full">
+            {/* Menu Desktop */}
+            <div className="hidden lg:flex items-center relative h-full">
               {/* Botão Todas as categorias */}
-              <div
-                className="relative flex items-center h-full px-4 bg-red-500 cursor-pointer"
-                onMouseEnter={() => setOpenDropdown(true)}
-                onMouseLeave={() => setOpenDropdown(false)}
-              >
+              <div className="relative group flex items-center h-full px-4 cursor-pointer hover:bg-red-600 transition duration-300">
                 <span className="text-white font-medium">
                   Todas as categorias
                 </span>
 
-                {openDropdown && (
-                  <ul className="absolute top-full left-0 mt-1 bg-white text-black shadow-lg rounded w-48 z-50">
+                <ul
+                  className="absolute top-full left-0 w-64 max-h-96 overflow-auto 
+                 rounded-2xl bg-white shadow-lg ring-1 ring-black/10 z-50 p-3
+                 hidden group-hover:block"
+                >
+                  {categories.map((cat) => (
                     <li
-                      className="p-2 hover:bg-blue-500 hover:text-white cursor-pointer"
+                      key={cat.slug}
+                      className={`px-4 py-2 text-gray-700 text-sm font-medium rounded-xl 
+                      hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-500 hover:text-white
+                      transition-all duration-200 ease-out cursor-pointer
+                      ${
+                        category === cat.slug
+                          ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white"
+                          : ""
+                      }`}
                       onClick={() => {
-                        setCategory("");
+                        setCategory(cat.slug);
                         setQuery("");
                         setPage(0);
-                        setOpenDropdown(false);
                       }}
                     >
-                      Ver tudo
+                      {cat.name}
                     </li>
-                    {categories.map((cat) => (
-                      <li
-                        key={cat.slug}
-                        className={`p-2 hover:bg-blue-500 hover:text-white cursor-pointer ${
-                          category === cat.slug ? "font-bold" : ""
-                        }`}
-                        onClick={() => {
-                          setCategory(cat.slug);
-                          setQuery("");
-                          setPage(0);
-                          setOpenDropdown(false);
-                        }}
-                      >
-                        {cat.name}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                  ))}
+                </ul>
               </div>
 
               {/* Carrinho */}
-              <div className="flex items-center gap-2 text-white cursor-pointer">
-                <span>Meu carrinho</span>
-                <ShoppingCartIcon size={22} />
+              <div className="relative flex items-center h-full px-4 gap-2 cursor-pointer hover:bg-red-600 transition duration-300">
+                <span className="text-white font-medium">Meu carrinho</span>
+                <ShoppingCartIcon size={22} color="white" />
               </div>
             </div>
           </>

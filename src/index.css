@@ -26,3 +26,41 @@ body {
   background-color: var(--color-light);
   color: var(--color-dark);
 }
+
+/* Para navegadores baseados em WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* largura da barra vertical */
+  height: 8px; /* altura da barra horizontal */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* fundo da barra */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff7a18, #ff5403); /* cor do "botão" */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff5403, #ff2e00); /* hover */
+}
+
+/* Para Firefox */
+* {
+  scrollbar-width: thin; /* "auto" | "thin" | "none" */
+  scrollbar-color: #ff7a18 #f1f1f1; /* cor do thumb e do track */
+}
+
+/* Esconder scrollbar só em mobile */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  * {
+    -ms-overflow-style: none; /* IE e Edge antigos */
+    scrollbar-width: none; /* Firefox */
+  }
+}

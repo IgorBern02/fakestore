@@ -44,7 +44,7 @@ export function Filters({
       </form>
 
       {/* Categorias */}
-      <select
+      {/* <select
         value={category}
         onChange={(e) => {
           setPage(0);
@@ -60,7 +60,7 @@ export function Filters({
             {cat.name}
           </option>
         ))}
-      </select>
+      </select> */}
     </div>
   );
 }

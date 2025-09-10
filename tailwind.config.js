@@ -21,5 +21,14 @@ export default {
       epilogue: ["var(--font-epilogue)"],
     },
   },
+  keyframes: {
+    fadeIn: {
+      "0%": { opacity: 0, transform: "scale(95%)" },
+      "100%": { opacity: 1, transform: "scale(100%)" },
+    },
+  },
+  animation: {
+    fadeIn: "fadeIn 0.15s ease-out forwards",
+  },
   plugins: [],
 };
