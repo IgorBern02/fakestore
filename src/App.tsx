@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import {
   getProducts,
   searchProducts,
@@ -24,17 +24,19 @@ function App() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const [total, setTotal] = useState(0);
+  const [error, setError] = useState<string>("");
 
   const limit = 12;
 
-  // categorias
+  // carregar categorias
   useEffect(() => {
     getCategories().then((res) => setCategories(res.data));
   }, []);
 
-  // produtos
+  // carregar produtos
   useEffect(() => {
     setLoading(true);
+    setError("");
 
     let fetchData: ReturnType<typeof getProducts>;
 
@@ -48,19 +50,33 @@ function App() {
 
     fetchData
       .then((res) => {
+        if (res.data.products.length === 0) {
+          setError("Nenhum produto encontrado.");
+        }
         setProducts(res.data.products);
         setTotal(res.data.total);
+      })
+      .catch(() => {
+        setError("Erro ao buscar produtos. Tente novamente.");
       })
       .finally(() => setLoading(false));
   }, [page, search, category]);
 
   const totalPages = Math.ceil(total / limit);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // busca manual (quando o usuário digita e envia o form)
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setPage(0);
-    setSearch(query);
     setCategory("");
+    setSearch(query);
+  };
+
+  const resetFilters = () => {
+    setQuery("");
+    setSearch("");
+    setCategory("");
+    setPage(0);
   };
 
   if (loading) return <main className="p-4">Carregando...</main>;
@@ -76,6 +92,7 @@ function App() {
         setCategory={setCategory}
         setQuery={setQuery}
         setPage={setPage}
+        resetFilters={resetFilters}
       />
 
       {/* Navegação lateral */}
@@ -105,16 +122,21 @@ function App() {
             setPage={setPage}
             setSearch={setSearch}
             categories={categories}
+            error={error}
           />
         </section>
 
         {/* Lista de produtos */}
         <section aria-label="Lista de produtos" className="mt-6">
-          <ProductGrid products={products} />
+          {error ? (
+            <p className="text-center text-red-500 font-medium">{error}</p>
+          ) : (
+            <ProductGrid products={products} />
+          )}
         </section>
 
         {/* Paginação */}
-        {total > limit && (
+        {!error && total > limit && (
           <nav
             aria-label="Paginação de produtos"
             className="mt-8 flex justify-center"
@@ -124,8 +146,7 @@ function App() {
         )}
       </main>
 
-      {/* Rodapé (se você criar depois) */}
-      {/* <footer className="bg-gray-100 text-center py-4">...</footer> */}
+      {/* Rodapé */}
       <Footer />
     </div>
   );

@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { ListIcon, ShoppingCartIcon, XIcon } from "@phosphor-icons/react";
 import { SubHeader } from "./SubHeader";
 import { type Category } from "../services/types";
+import { Link } from "react-router-dom";
+import { getProducts } from "../services/api";
 
 interface HeaderProps {
   openMenu: boolean;
@@ -11,6 +13,7 @@ interface HeaderProps {
   setCategory: (value: string) => void;
   setQuery: (value: string) => void;
   setPage: (value: number) => void;
+  resetFilters: () => void;
 }
 
 export function Header({
@@ -21,6 +24,7 @@ export function Header({
   setCategory,
   setQuery,
   setPage,
+  resetFilters,
 }: HeaderProps) {
   const [showSubHeader, setShowSubHeader] = useState(true);
   const [subHeaderHeight, setSubHeaderHeight] = useState(0);
@@ -60,9 +64,11 @@ export function Header({
       >
         {!openMenu && (
           <>
-            <h1 className="text-3xl md:text-4xl font-story text-white">
-              Fake Store
-            </h1>
+            <Link to="/" onClick={resetFilters}>
+              <h1 className="text-3xl md:text-4xl font-story text-white">
+                Fake Store
+              </h1>
+            </Link>
 
             {/* Menu Desktop */}
             {/* Menu Desktop */}
