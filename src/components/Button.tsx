@@ -1,5 +1,5 @@
 interface PropsButton {
-  text: string;
+  text?: string;
   className?: string;
   onClick?: () => void;
   disabled?: boolean;

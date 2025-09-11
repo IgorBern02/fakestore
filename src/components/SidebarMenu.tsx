@@ -5,6 +5,7 @@ import {
   ArrowUpIcon,
   ShoppingCartIcon,
 } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 interface SidebarMenuProps {
   openMenu: boolean;
@@ -97,14 +98,14 @@ export function SidebarMenu({
             )}
           </li>
           <li>
-            <div>
+            <Link to="/shopping-store">
               <div className="flex justify-center items-center gap-23">
                 <span>Meu carrinho</span>
                 <span>
                   <ShoppingCartIcon size={22} />
                 </span>
               </div>
-            </div>
+            </Link>
           </li>
         </ul>
       </div>

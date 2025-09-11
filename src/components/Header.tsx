@@ -108,10 +108,13 @@ export function Header({
               </div>
 
               {/* Carrinho */}
-              <div className="relative flex items-center h-full px-4 gap-2 cursor-pointer hover:bg-red-600 transition duration-300">
+              <Link
+                to="/shopping-store"
+                className="relative flex items-center hover:bg-red-600 transition duration-300  h-full px-4 gap-2 cursor-pointer "
+              >
                 <span className="text-white font-medium">Meu carrinho</span>
                 <ShoppingCartIcon size={22} color="white" />
-              </div>
+              </Link>
             </div>
           </>
         )}
