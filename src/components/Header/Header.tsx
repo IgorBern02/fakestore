@@ -1,9 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { ListIcon, ShoppingCartIcon, XIcon } from "@phosphor-icons/react";
 import { SubHeader } from "./SubHeader";
-import { type Category } from "../services/types";
+import { type Category } from "../../services/types";
 import { Link } from "react-router-dom";
-import { getProducts } from "../services/api";
 
 interface HeaderProps {
   openMenu: boolean;
@@ -109,7 +108,7 @@ export function Header({
 
               {/* Carrinho */}
               <Link
-                to="/shopping-store"
+                to="/shoppingstore"
                 className="relative flex items-center hover:bg-red-600 transition duration-300  h-full px-4 gap-2 cursor-pointer "
               >
                 <span className="text-white font-medium">Meu carrinho</span>

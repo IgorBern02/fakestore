@@ -1,7 +1,7 @@
 import { Link } from "react-router";
-import { Button } from "./Button";
+import { Button } from "../UI/Button";
 import { ShoppingCartIcon } from "@phosphor-icons/react";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../../context/CartContext";
 
 interface Product {
   id: number;

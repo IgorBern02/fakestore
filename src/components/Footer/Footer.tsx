@@ -9,7 +9,7 @@ export const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="w-full flex flex-col lg:flex-row items-center justify-center pt-5 mt-10 gap-8 lg:justify-around bg-[#282828] text-white text-center overflow-x-hidden lg:grid grid-cols-1 ">
+    <footer className="w-screen flex flex-col lg:flex-row items-center justify-center pt-5 mt-10 gap-8 lg:justify-around bg-[#282828] text-white text-center overflow-x-hidden lg:grid grid-cols-1 ">
       {/* Logo + Socials */}
       <section className="w-full flex flex-col lg:flex-row gap-4 items-center justify-center lg:justify-around">
         <h3 className="text-3xl lg:text-4xl font-bold">fake store</h3>

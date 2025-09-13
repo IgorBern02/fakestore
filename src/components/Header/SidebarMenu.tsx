@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { type Category } from "../services/types";
+import { type Category } from "../../services/types";
 import {
   ArrowDownIcon,
   ArrowUpIcon,
@@ -98,7 +98,7 @@ export function SidebarMenu({
             )}
           </li>
           <li>
-            <Link to="/shopping-store">
+            <Link to="/shoppingstore">
               <div className="flex justify-center items-center gap-23">
                 <span>Meu carrinho</span>
                 <span>

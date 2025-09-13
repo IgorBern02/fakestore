@@ -7,22 +7,31 @@ import {
 } from "./services/api";
 
 import { type Product, type Category } from "./services/types";
-import { Header } from "./components/Header";
-import { Filters } from "./components/Filters";
-import { ProductGrid } from "./components/ProductGrid";
-import { Pagination } from "./components/Pagination";
-import { SidebarMenu } from "./components/SidebarMenu";
-import { Footer } from "./components/Footer";
+import { Filters } from "./components/UI/Filters";
+import { ProductGrid } from "./components/Product/ProductGrid";
+import { Pagination } from "./components/UI/Pagination";
+import { Footer } from "./components/Footer/Footer";
+import { useOutletContext } from "react-router-dom";
+
+type LayoutContext = {
+  query: string;
+  category: string;
+  page: number;
+  search: string;
+  setQuery: (v: string) => void;
+  setCategory: (v: string) => void;
+  setPage: (v: number) => void;
+  setSearch: (v: string) => void;
+  resetFilters: () => void;
+};
 
 function App() {
-  const [openMenu, setOpenMenu] = useState(false);
+  const { query, category, page, search, setCategory, setPage, setSearch } =
+    useOutletContext<LayoutContext>();
+
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(0);
-  const [query, setQuery] = useState("");
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
   const [total, setTotal] = useState(0);
   const [error, setError] = useState<string>("");
 
@@ -38,7 +47,7 @@ function App() {
     setLoading(true);
     setError("");
 
-    let fetchData: ReturnType<typeof getProducts>;
+    let fetchData;
 
     if (search) {
       fetchData = searchProducts(search, limit, page * limit);
@@ -64,7 +73,7 @@ function App() {
 
   const totalPages = Math.ceil(total / limit);
 
-  // busca manual (quando o usuário digita e envia o form)
+  // busca manual
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setPage(0);
@@ -72,61 +81,15 @@ function App() {
     setSearch(query);
   };
 
-  const resetFilters = () => {
-    setQuery("");
-    setSearch("");
-    setCategory("");
-    setPage(0);
-  };
-
   if (loading) return <main className="p-4">Carregando...</main>;
 
   return (
-    <div className="bg-background text-text w-full min-h-screen flex flex-col">
-      {/* Cabeçalho */}
-      <Header
-        openMenu={openMenu}
-        setOpenMenu={setOpenMenu}
-        categories={categories}
-        category={category}
-        setCategory={setCategory}
-        setQuery={setQuery}
-        setPage={setPage}
-        resetFilters={resetFilters}
-      />
-
-      {/* Navegação lateral */}
-      <aside>
-        <SidebarMenu
-          openMenu={openMenu}
-          setOpenMenu={setOpenMenu}
-          setQuery={setQuery}
-          category={category}
-          setCategory={setCategory}
-          setPage={setPage}
-          setSearch={setSearch}
-          categories={categories}
-        />
-      </aside>
-
-      {/* Conteúdo principal */}
+    <div className="bg-background text-text w-full min-h-screen flex flex-col overflow-x-hidden">
       <main className="flex-1 container mx-auto px-4 pt-10">
-        {/* Filtros e busca */}
         <section aria-label="Filtros de produtos">
-          <Filters
-            query={query}
-            setQuery={setQuery}
-            handleSubmit={handleSubmit}
-            category={category}
-            setCategory={setCategory}
-            setPage={setPage}
-            setSearch={setSearch}
-            categories={categories}
-            error={error}
-          />
+          <Filters handleSubmit={handleSubmit} />
         </section>
 
-        {/* Lista de produtos */}
         <section aria-label="Lista de produtos" className="mt-6">
           {error ? (
             <p className="text-center text-red-500 font-medium">{error}</p>
@@ -135,7 +98,6 @@ function App() {
           )}
         </section>
 
-        {/* Paginação */}
         {!error && total > limit && (
           <nav
             aria-label="Paginação de produtos"
@@ -146,7 +108,6 @@ function App() {
         )}
       </main>
 
-      {/* Rodapé */}
       <Footer />
     </div>
   );

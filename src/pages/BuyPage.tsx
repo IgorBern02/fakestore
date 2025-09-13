@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { Button } from "../components/Button";
+import { Button } from "../components/UI/Button";
 
 interface Product {
   id: number;
@@ -29,8 +29,8 @@ export const Buy = () => {
     return <p className="text-center mt-10">Produto não encontrado</p>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="grid md:grid-cols-2 gap-8 items-center text-text-primary">
+    <div className=" min-h-screen flex flex-col lg:flex-row items-center justify-center p-3 text-center text-white">
+      <div className="relative flex flex-col lg:flex-row lg:w-3/5 gap-8 items-center justify-center text-text-primary mt-20">
         {/* Imagem do produto */}
 
         <img
@@ -51,7 +51,7 @@ export const Buy = () => {
 
           <Button
             text="Finalizar Compra"
-            className="w-full px-6 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition"
+            className="w-full lg:w-3/5 px-6 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition cursor-pointer"
           />
         </div>
       </div>
