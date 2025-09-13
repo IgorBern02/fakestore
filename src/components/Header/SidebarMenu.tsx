@@ -1,22 +1,11 @@
 import { useState } from "react";
-import { type Category } from "../../services/types";
+import type { SidebarMenuProps } from "../../types";
 import {
   ArrowDownIcon,
   ArrowUpIcon,
   ShoppingCartIcon,
 } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
-
-interface SidebarMenuProps {
-  openMenu: boolean;
-  setOpenMenu: (value: boolean) => void;
-  setQuery: (value: string) => void;
-  category: string;
-  setCategory: (value: string) => void;
-  setPage: (value: number) => void;
-  setSearch: (value: string) => void;
-  categories: Category[];
-}
 
 export function SidebarMenu({
   openMenu,

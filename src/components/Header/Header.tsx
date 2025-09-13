@@ -1,19 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { ListIcon, ShoppingCartIcon, XIcon } from "@phosphor-icons/react";
 import { SubHeader } from "./SubHeader";
-import { type Category } from "../../services/types";
+import type { HeaderProps } from "../../types";
 import { Link } from "react-router-dom";
-
-interface HeaderProps {
-  openMenu: boolean;
-  setOpenMenu: (value: boolean) => void;
-  categories: Category[];
-  category: string;
-  setCategory: (value: string) => void;
-  setQuery: (value: string) => void;
-  setPage: (value: number) => void;
-  resetFilters: () => void;
-}
 
 export function Header({
   openMenu,

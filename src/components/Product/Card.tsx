@@ -2,19 +2,7 @@ import { Link } from "react-router";
 import { Button } from "../UI/Button";
 import { ShoppingCartIcon } from "@phosphor-icons/react";
 import { useCart } from "../../context/CartContext";
-
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  thumbnail: string;
-}
-
-type Products = Product[];
-
-interface CardProps {
-  products: Products;
-}
+import type { CardProps } from "../../types";
 
 export const Card = ({ products }: CardProps) => {
   const { addToCart } = useCart();

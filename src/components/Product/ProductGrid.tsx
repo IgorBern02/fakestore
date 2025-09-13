@@ -1,9 +1,5 @@
-import { type Product } from "../../services/types";
+import type { ProductGridProps } from "../../types";
 import { Card } from "./Card";
-
-interface ProductGridProps {
-  products: Product[];
-}
 
 export function ProductGrid({ products }: ProductGridProps) {
   return (

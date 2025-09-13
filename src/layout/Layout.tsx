@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import { Header } from "../components/Header/Header";
 import { SidebarMenu } from "../components/Header/SidebarMenu";
 import { getCategories } from "../services/api";
-import { type Category } from "../services/types";
+import type { Category } from "../types";
 
 export function Layout() {
   const [openMenu, setOpenMenu] = useState(false);

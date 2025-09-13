@@ -1,20 +1,6 @@
-import { type FormEvent } from "react";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 import { useOutletContext } from "react-router-dom";
-
-type LayoutContext = {
-  query: string;
-  setQuery: (v: string) => void;
-  category: string;
-  setCategory: (v: string) => void;
-  page: number;
-  setPage: (v: number) => void;
-  resetFilters: () => void;
-};
-
-interface FiltersProps {
-  handleSubmit: (e: FormEvent) => void;
-}
+import type { LayoutContext, FiltersProps } from "../../types";
 
 export function Filters({ handleSubmit }: FiltersProps) {
   const { query, setQuery } = useOutletContext<LayoutContext>();

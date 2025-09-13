@@ -6,24 +6,12 @@ import {
   getProductsByCategory,
 } from "./services/api";
 
-import { type Product, type Category } from "./services/types";
+import type { Product, Category, LayoutContext } from "./types";
 import { Filters } from "./components/UI/Filters";
 import { ProductGrid } from "./components/Product/ProductGrid";
 import { Pagination } from "./components/UI/Pagination";
 import { Footer } from "./components/Footer/Footer";
 import { useOutletContext } from "react-router-dom";
-
-type LayoutContext = {
-  query: string;
-  category: string;
-  page: number;
-  search: string;
-  setQuery: (v: string) => void;
-  setCategory: (v: string) => void;
-  setPage: (v: number) => void;
-  setSearch: (v: string) => void;
-  resetFilters: () => void;
-};
 
 function App() {
   const { query, category, page, search, setCategory, setPage, setSearch } =

@@ -5,10 +5,7 @@ import {
   FacebookLogoIcon,
   TiktokLogoIcon,
 } from "@phosphor-icons/react";
-
-interface SubHeaderProps {
-  text: string;
-}
+import type { SubHeaderProps } from "../../types";
 
 export const SubHeader = forwardRef<HTMLDivElement, SubHeaderProps>(
   ({ text }, ref) => {

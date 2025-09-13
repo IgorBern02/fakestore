@@ -1,10 +1,5 @@
 import { Button } from "../UI/Button";
-
-interface PaginationProps {
-  page: number;
-  setPage: (value: number) => void;
-  totalPages: number;
-}
+import type { PaginationProps } from "../../types";
 
 export function Pagination({ page, setPage, totalPages }: PaginationProps) {
   return (
