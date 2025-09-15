@@ -12,6 +12,7 @@ import { ProductGrid } from "./components/Product/ProductGrid";
 import { Pagination } from "./components/UI/Pagination";
 import { Footer } from "./components/Footer/Footer";
 import { useOutletContext } from "react-router-dom";
+import { HeroSection } from "./components/HeroSection/HeroSection";
 
 function App() {
   const { query, category, page, search, setCategory, setPage, setSearch } =
@@ -73,7 +74,11 @@ function App() {
 
   return (
     <div className="bg-background text-text w-full min-h-screen flex flex-col overflow-x-hidden">
-      <main className="flex-1 container mx-auto px-4 pt-10">
+      <main className="flex-1 container mx-auto pt-10">
+        <div className="bg-red-500 w-screen h-96 mt-14 flex justify-center items-center">
+          <HeroSection text="asjidbaisjuhbdj" />
+        </div>
+
         <section aria-label="Filtros de produtos">
           <Filters handleSubmit={handleSubmit} />
         </section>
