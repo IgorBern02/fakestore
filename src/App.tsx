@@ -75,8 +75,8 @@ function App() {
   return (
     <div className="bg-background text-text w-full min-h-screen flex flex-col overflow-x-hidden">
       <main className="flex-1 container mx-auto pt-10">
-        <div className="bg-red-500 w-screen h-96 mt-14 flex justify-center items-center">
-          <HeroSection text="asjidbaisjuhbdj" />
+        <div className="w-screen h-[500px] flex justify-center items-center">
+          <HeroSection text="Mantenha se informado" />
         </div>
 
         <section aria-label="Filtros de produtos">

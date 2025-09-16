@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Product, Category } from "./types";
+import type { Product, Category } from "../types";
 
 const api = axios.create({
   baseURL: "https://dummyjson.com",
