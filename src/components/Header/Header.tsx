@@ -34,20 +34,33 @@ export function Header({
     }
   }, [showSubHeader]);
 
+  const messages = [
+    "Frete grátis para compras acima de R$199",
+    "10% OFF na primeira compra – use o cupom BEMVINDO",
+    "Entrega rápida para todo o Brasil",
+  ];
+
+  const [currentMessage, setCurrentMessage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentMessage((prev) => (prev + 1) % messages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       {/* SubHeader */}
       {showSubHeader && (
-        <SubHeader
-          text="DOS MESMOS CRIADORES DO Rock In Rio"
-          ref={subHeaderRef}
-        />
+        <SubHeader text={messages[currentMessage]} ref={subHeaderRef} />
       )}
 
       {/* Header */}
       <header
         className={`w-full fixed left-0 z-50 flex justify-between items-center transition-all
-        ${openMenu ? "bg-transparent shadow-none" : "bg-secondary"} h-16 px-4`}
+        ${openMenu ? "bg-transparent shadow-none" : "bg-primary"} h-16 px-4`}
         style={{ top: showSubHeader ? subHeaderHeight : 0 }}
       >
         {!openMenu && (
@@ -62,7 +75,7 @@ export function Header({
             {/* Menu Desktop */}
             <div className="hidden lg:flex items-center relative h-full">
               {/* Botão Todas as categorias */}
-              <div className="relative group flex items-center h-full px-4 cursor-pointer hover:bg-red-600 transition duration-300">
+              <div className="relative group flex items-center h-full px-4 cursor-pointer hover:bg-secondary transition duration-300">
                 <span className="text-white font-medium">
                   Todas as categorias
                 </span>
@@ -98,7 +111,7 @@ export function Header({
               {/* Carrinho */}
               <Link
                 to="/shoppingstore"
-                className="relative flex items-center hover:bg-red-600 transition duration-300  h-full px-4 gap-2 cursor-pointer "
+                className="relative flex items-center hover:bg-secondary transition duration-300  h-full px-4 gap-2 cursor-pointer "
               >
                 <span className="text-white font-medium">Meu carrinho</span>
                 <ShoppingCartIcon size={22} color="white" />
@@ -109,7 +122,7 @@ export function Header({
 
         {/* Botão Mobile */}
         <button
-          className="lg:hidden px-3 py-2 text-black ml-auto"
+          className="lg:hidden px-3 py-2 text-white ml-auto"
           onClick={() => setOpenMenu(!openMenu)}
         >
           {openMenu ? (

@@ -25,7 +25,7 @@ export const ShoppingStore = () => {
           cart.map((item) => (
             <li
               key={item.id}
-              className="w-full flex flex-col items-center gap-3 p-3 bg-black/40 rounded-lg text-white"
+              className="w-full flex flex-col items-center gap-3 p-3 bg-white shadow-lg rounded-lg text-black"
             >
               <section className="w-full flex items-center justify-between p-3 rounded">
                 <img
@@ -35,7 +35,7 @@ export const ShoppingStore = () => {
                 />
                 <div className="flex flex-col items-start flex-1">
                   <span className="font-semibold">{item.title}</span>
-                  <span className="text-gray-300 mt-2">
+                  <span className="text-gray-700 mt-2">
                     R$ {(item.price * item.quantity).toFixed(2)} (
                     {item.quantity}x)
                   </span>
@@ -46,14 +46,14 @@ export const ShoppingStore = () => {
                 <div className="flex items-center gap-4">
                   <button
                     onClick={() => decreaseQuantity(item.id)}
-                    className="p-2 bg-gray-700 rounded hover:bg-gray-600 cursor-pointer"
+                    className="text-white p-2 bg-primary rounded hover:bg-secondary cursor-pointer transition duration-300"
                   >
                     <MinusIcon size={18} />
                   </button>
                   <span>{item.quantity}</span>
                   <button
                     onClick={() => increaseQuantity(item.id)}
-                    className="p-2 bg-gray-700 rounded hover:bg-gray-600 cursor-pointer"
+                    className="text-white p-2 bg-primary rounded hover:bg-secondary cursor-pointer transition duration-300"
                   >
                     <PlusIcon size={19} />
                   </button>
@@ -62,7 +62,7 @@ export const ShoppingStore = () => {
 
               <Button
                 text="Remover"
-                className="w-full p-2 bg-red-500 rounded hover:bg-red-400 cursor-pointer"
+                className="text-white w-full p-2 bg-primary rounded hover:bg-secondary cursor-pointer transition duration-300"
                 onClick={() => removeFromCart(item.id)}
               />
             </li>

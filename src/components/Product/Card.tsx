@@ -17,9 +17,9 @@ export const Card = ({ products }: CardProps) => {
           {/* Botão adicionar ao carrinho */}
           <div
             onClick={() => addToCart(p)}
-            className="absolute right-5 top-5 bg-amber-300 p-2 rounded-full cursor-pointer hover:scale-[1.30] transition-transform duration-300"
+            className="absolute right-5 top-5 bg-primary p-2 rounded-full cursor-pointer hover:scale-[1.30] transition-transform duration-300"
           >
-            <ShoppingCartIcon size={24} color="black" />
+            <ShoppingCartIcon size={24} color="white" />
           </div>
 
           <Link to={`/buy/${p.id}`}>
@@ -38,7 +38,7 @@ export const Card = ({ products }: CardProps) => {
               <div className="mt-3">
                 <Button
                   text="Comprar"
-                  className="w-full px-4 py-2 cursor-pointer rounded-xl text-text-primary bg-primary hover:opacity-90 hover:bg-primary-hover transition"
+                  className="w-full px-4 py-2 cursor-pointer rounded-xl text-white bg-primary hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-500 hover:opacity-90 transition"
                 />
               </div>
             </div>
