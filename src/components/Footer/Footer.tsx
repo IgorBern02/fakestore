@@ -17,25 +17,25 @@ export const Footer = () => {
           <a href="#" aria-label="Instagram">
             <InstagramLogoIcon
               size={26}
-              className="hover:text-red-500 cursor-pointer transition-colors"
+              className="hover:text-primary cursor-pointer transition-colors"
             />
           </a>
           <a href="#" aria-label="X (Twitter)">
             <XLogoIcon
               size={26}
-              className="hover:text-red-500 cursor-pointer transition-colors"
+              className="hover:text-primary cursor-pointer transition-colors"
             />
           </a>
           <a href="#" aria-label="Facebook">
             <FacebookLogoIcon
               size={26}
-              className="hover:text-red-500 cursor-pointer transition-colors"
+              className="hover:text-primary cursor-pointer transition-colors"
             />
           </a>
           <a href="#" aria-label="TikTok">
             <TiktokLogoIcon
               size={26}
-              className="hover:text-red-500 cursor-pointer transition-colors"
+              className="hover:text-primary cursor-pointer transition-colors"
             />
           </a>
         </div>
@@ -44,25 +44,20 @@ export const Footer = () => {
       {/* Links */}
       <section className="flex flex-col md:flex-row gap-6 w-full justify-center lg:justify-start lg:ml-72 lg:gap-20">
         <div className="text-center lg:text-left tracking-[2px]">
-          <h3 className="text-xl font-bold uppercase">The town</h3>
+          <h3 className="text-xl font-bold uppercase">Institucional</h3>
           <ul className="mt-2 space-y-1 lg:text-sm ">
             <li>
-              <a href="#" className="hover:text-red-500 uppercase ">
-                home
+              <a href="#" className="hover:text-primary uppercase ">
+                Sobre nós
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-red-500 uppercase">
-                about
+              <a href="#" className="hover:text-primary uppercase">
+                Trabalhe conosco
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-red-500 uppercase">
-                contact
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-red-500 uppercase">
+              <a href="#" className="hover:text-primary uppercase">
                 blog
               </a>
             </li>
@@ -72,17 +67,17 @@ export const Footer = () => {
           <h3 className="text-xl font-bold uppercase">Explorar</h3>
           <ul className="mt-2 space-y-1 lg:text-sm">
             <li>
-              <a href="#" className="hover:text-red-500 uppercase">
+              <a href="#" className="hover:text-primary uppercase">
                 faq
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-red-500 uppercase">
+              <a href="#" className="hover:text-primary uppercase">
                 imprensa
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-red-500 uppercase">
+              <a href="#" className="hover:text-primary uppercase">
                 política de privacidade
               </a>
             </li>

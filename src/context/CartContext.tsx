@@ -6,14 +6,7 @@ import {
   useEffect,
   type ReactNode,
 } from "react";
-
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  thumbnail: string;
-}
-
+import type { Product } from "../types";
 interface CartItem extends Product {
   quantity: number;
 }
@@ -25,6 +18,8 @@ interface CartContextType {
   clearCart: () => void;
   increaseQuantity: (id: number) => void;
   decreaseQuantity: (id: number) => void;
+  updateQuantity: (id: number, quantity: number) => void;
+  total: number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -65,6 +60,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     );
   };
 
+  const updateQuantity = (id: number, quantity: number) =>
+    setCart((prev) => prev.map((p) => (p.id === id ? { ...p, quantity } : p)));
+
+  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
   const decreaseQuantity = (id: number) => {
     setCart(
       (prev) =>
@@ -87,6 +87,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         clearCart,
         increaseQuantity,
         decreaseQuantity,
+        updateQuantity,
+        total,
       }}
     >
       {children}

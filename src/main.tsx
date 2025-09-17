@@ -7,6 +7,8 @@ import { Buy } from "./pages/BuyPage";
 import { ShoppingStore } from "./pages/ShoppingStorePage";
 import { Layout } from "./layout/Layout";
 import { CartProvider } from "./context/CartContext";
+import { Checkout } from "./components/Checkout/Checkout";
+import { CheckoutAll } from "./components/Checkout/CheckoutAll";
 
 createRoot(document.getElementById("root")!).render(
   <CartProvider>
@@ -16,6 +18,8 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/" element={<App />} />
           <Route path="/buy/:id" element={<Buy />} />
           <Route path="/shoppingstore" element={<ShoppingStore />} />
+          <Route path="/checkout/:id" element={<Checkout />} />
+          <Route path="/checkoutall" element={<CheckoutAll />} />
         </Route>
         <Route path="*" element={<p>Página não encontrada</p>} />
       </Routes>

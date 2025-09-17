@@ -89,11 +89,11 @@ export function Header({
                     <li
                       key={cat.slug}
                       className={`px-4 py-2 text-gray-700 text-sm font-medium rounded-xl 
-                      hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-500 hover:text-white
+                      hover:bg-gradient-to-r hover:bg-secondary hover:text-white
                       transition-all duration-200 ease-out cursor-pointer
                       ${
                         category === cat.slug
-                          ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white"
+                          ? "bg-gradient-to-r from-secondary to-primary text-white"
                           : ""
                       }`}
                       onClick={() => {

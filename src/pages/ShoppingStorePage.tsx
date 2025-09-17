@@ -2,6 +2,7 @@
 import { useCart } from "../context/CartContext";
 import { Button } from "../components/UI/Button";
 import { PlusIcon, MinusIcon } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 export const ShoppingStore = () => {
   const {
@@ -77,12 +78,13 @@ export const ShoppingStore = () => {
           </div>
         )}
 
-        <Button
-          text="Finalizar Compra"
-          disabled={cart.length === 0}
-          className="absolute bottom-5 w-3/5 lg:w-1/5 px-6 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition mt-6 cursor-pointer disabled:opacity-50"
-          onClick={clearCart}
-        />
+        <Link to="/checkoutall">
+          <Button
+            text="Finalizar Compra"
+            disabled={cart.length === 0}
+            className="absolute bottom-5 w-3/5 lg:w-1/5 px-6 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition mt-6 cursor-pointer disabled:opacity-50"
+          />
+        </Link>
       </div>
     </div>
   );

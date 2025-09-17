@@ -1,14 +1,8 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { Button } from "../components/UI/Button";
-
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  thumbnail: string;
-  description?: string;
-}
+import { Link } from "react-router-dom";
+import type { Product } from "../types";
 
 export const Buy = () => {
   const { id } = useParams<{ id: string }>();
@@ -48,11 +42,12 @@ export const Buy = () => {
           <p className="text-xl font-semibold mb-6 text-destaque">
             R$ {product.price.toFixed(2)}
           </p>
-
-          <Button
-            text="Finalizar Compra"
-            className="w-full lg:w-3/5 px-6 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition cursor-pointer"
-          />
+          <Link to={`/checkout/${product.id}`}>
+            <Button
+              text="Finalizar Compra"
+              className="w-full lg:w-3/5 px-6 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition cursor-pointer"
+            />
+          </Link>
         </div>
       </div>
     </div>
