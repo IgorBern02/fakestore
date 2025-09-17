@@ -71,18 +71,21 @@ export const ShoppingStore = () => {
         )}
       </ul>
 
-      <div className="w-full flex items-center justify-center p-3 rounded">
+      <div className="w-full flex flex-col items-center justify-center p-3 rounded">
         {cart.length > 0 && (
           <div className="w-full mt-6 text-black text-lg font-semibold">
             Total: R$ {total.toFixed(2)}
           </div>
         )}
 
-        <Link to="/checkoutall">
+        <Link
+          to="/checkoutall"
+          className="w-full flex items-center justify-center"
+        >
           <Button
             text="Finalizar Compra"
             disabled={cart.length === 0}
-            className="absolute bottom-5 w-3/5 lg:w-1/5 px-6 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition mt-6 cursor-pointer disabled:opacity-50"
+            className=" w-4/5 lg:w-1/5 px-6 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition mt-6 cursor-pointer disabled:opacity-50"
           />
         </Link>
       </div>
