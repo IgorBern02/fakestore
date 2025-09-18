@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import type { Product } from "../../types";
 import { useParams } from "react-router";
+import { ConfirmData } from "../ConfirmData/ConfirmData";
 
 export const Checkout = () => {
-  const [payment, setPayment] = useState("pix");
+  // const [payment, setPayment] = useState("pix");
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (!id) return;
@@ -49,103 +51,39 @@ export const Checkout = () => {
           </div>
         </div>
 
-        {/* Formulário */}
-        <div className="mt-6 space-y-6">
-          {/* Dados do cliente */}
-          <div>
-            <h3 className="text-lg font-semibold mb-3">Seus dados</h3>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="Nome completo"
-                className="w-full border rounded-md p-2 focus:border-orange-500 outline-none"
-              />
-              <input
-                type="email"
-                placeholder="E-mail"
-                className="w-full border rounded-md p-2 focus:border-orange-500 outline-none"
-              />
-              <input
-                type="text"
-                placeholder="Endereço"
-                className="w-full border rounded-md p-2 focus:border-orange-500 outline-none"
-              />
-              <input
-                type="text"
-                placeholder="CEP"
-                className="w-full border rounded-md p-2 focus:border-orange-500 outline-none"
-              />
-              <input
-                type="text"
-                placeholder="Cidade"
-                className="w-full border rounded-md p-2 focus:border-orange-500 outline-none"
-              />
-            </div>
-          </div>
-
-          {/* Métodos de pagamento */}
-          <div>
-            <h3 className="text-lg font-semibold mb-3">Pagamento</h3>
-            <div className="flex gap-4">
-              <button
-                onClick={() => setPayment("pix")}
-                className={`px-4 py-2 rounded-md border cursor-pointer ${
-                  payment === "pix" ? "bg-orange-500 text-white" : "bg-white"
-                }`}
-              >
-                Pix
-              </button>
-              <button
-                onClick={() => setPayment("cartao")}
-                className={`px-4 py-2 rounded-md border cursor-pointer ${
-                  payment === "cartao" ? "bg-orange-500 text-white" : "bg-white"
-                }`}
-              >
-                Cartão
-              </button>
-              <button
-                onClick={() => setPayment("boleto")}
-                className={`px-4 py-2 rounded-md border cursor-pointer ${
-                  payment === "boleto" ? "bg-orange-500 text-white" : "bg-white"
-                }`}
-              >
-                Boleto
-              </button>
-            </div>
-
-            {payment === "cartao" && (
-              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="Número do cartão"
-                  className="border rounded-md p-2 focus:border-orange-500 outline-none"
-                />
-                <input
-                  type="text"
-                  placeholder="Nome no cartão"
-                  className="border rounded-md p-2 focus:border-orange-500 outline-none"
-                />
-                <input
-                  type="text"
-                  placeholder="Validade (MM/AA)"
-                  className="border rounded-md p-2 focus:border-orange-500 outline-none"
-                />
-                <input
-                  type="text"
-                  placeholder="CVV"
-                  className="border rounded-md p-2 focus:border-orange-500 outline-none"
-                />
-              </div>
-            )}
-          </div>
-        </div>
+        <ConfirmData />
 
         {/* Botão finalizar */}
         <div className="mt-8">
-          <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition">
+          <button
+            onClick={() => setShowModal(true)}
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition"
+          >
             Confirmar Pedido
           </button>
         </div>
+
+        {/* Modal */}
+        {showModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-2xl p-6 w-96 text-center shadow-lg">
+              <h2 className="text-xl font-semibold mb-4">
+                Pedido Confirmado 🎉
+              </h2>
+              <p className="text-gray-600 mb-6">
+                Obrigado pela sua compra! Em breve você receberá mais
+                informações no seu e-mail.
+              </p>
+
+              <button
+                onClick={() => setShowModal(false)}
+                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg transition"
+              >
+                Fechar
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

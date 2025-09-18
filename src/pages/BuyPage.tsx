@@ -44,7 +44,7 @@ export const Buy = () => {
           </p>
           <Link to={`/checkout/${product.id}`}>
             <Button
-              text="Finalizar Compra"
+              text="Continuar Compra"
               className="w-full lg:w-3/5 px-6 py-3 bg-primary text-white rounded-lg hover:opacity-90 transition cursor-pointer"
             />
           </Link>
