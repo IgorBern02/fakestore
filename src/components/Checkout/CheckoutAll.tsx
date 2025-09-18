@@ -7,7 +7,7 @@ export const CheckoutAll = () => {
   const { cart, updateQuantity, removeFromCart, total } = useCart();
 
   return (
-    <div className="min-h-screen bg-yellow-100 flex flex-col items-center py-10 px-4 mt-20">
+    <div className="min-h-screen bg-background flex flex-col items-center py-10 px-4 mt-20">
       <div className="w-full max-w-3xl bg-white shadow-md rounded-2xl p-6">
         <h1 className="text-2xl font-bold text-center mb-6">
           Finalizar Compra
@@ -67,7 +67,7 @@ export const CheckoutAll = () => {
           Total: R$ {total.toFixed(2)}
         </div>
 
-        <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg mt-6">
+        <button className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg mt-6 cursor-pointer transition duration-300">
           Confirmar Pedido
         </button>
       </div>

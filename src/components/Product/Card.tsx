@@ -12,7 +12,7 @@ export const Card = ({ products }: CardProps) => {
       {products.map((p) => (
         <div
           key={p.id}
-          className="relative rounded-3xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform duration-300 group"
+          className="relative flex flex-col justify-center items-center rounded-3xl overflow-hidden shadow-lg hover:scale-[1.02] transition-transform duration-300 group"
         >
           {/* Botão adicionar ao carrinho */}
           <div
@@ -22,20 +22,20 @@ export const Card = ({ products }: CardProps) => {
             <ShoppingCartIcon size={24} color="white" />
           </div>
 
-          <Link to={`/buy/${p.id}`}>
-            {/* Imagem de fundo */}
+          <Link to={`/buy/${p.id}`} className="w-full">
+            {/* Imagem */}
             <img
               src={p.thumbnail}
               alt={p.title}
-              className="w-full h-64 object-cover "
+              className="w-full h-64 object-cover"
             />
 
-            {/* Conteúdo */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 text-text-primary">
+            {/* Conteúdo abaixo da imagem */}
+            <div className="p-4 text-text-primary flex flex-col items-start">
               <h2 className="font-bold text-lg line-clamp-2">{p.title}</h2>
               <p className="text-sm text-destaque">R$ {p.price.toFixed(2)}</p>
 
-              <div className="mt-3">
+              <div className="mt-3 w-full">
                 <Button
                   text="Comprar"
                   className="w-full px-4 py-2 cursor-pointer rounded-xl text-white bg-primary hover:bg-gradient-to-r hover:from-red-500 hover:to-orange-500 hover:opacity-90 transition"

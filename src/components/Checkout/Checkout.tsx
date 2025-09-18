@@ -24,7 +24,7 @@ export const Checkout = () => {
     return <p className="text-center mt-10">Produto não encontrado</p>;
 
   return (
-    <div className="min-h-screen bg-yellow-100 flex flex-col items-center py-10 px-4 mt-15">
+    <div className="min-h-screen bg-background flex flex-col items-center py-10 px-4 mt-15">
       <div className="w-full max-w-3xl bg-white shadow-md rounded-2xl p-6">
         {/* Título */}
         <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
