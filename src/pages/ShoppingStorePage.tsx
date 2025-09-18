@@ -3,6 +3,7 @@ import { useCart } from "../context/CartContext";
 import { Button } from "../components/UI/Button";
 import { PlusIcon, MinusIcon } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export const ShoppingStore = () => {
   const {
@@ -14,6 +15,22 @@ export const ShoppingStore = () => {
   } = useCart();
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const [showModal, setShowModal] = useState(false);
+  const [itemToRemove, setItemToRemove] = useState<number | null>(null);
+
+  const handleRemoveClick = (id: number) => {
+    setItemToRemove(id); // guarda o id do produto
+    setShowModal(true); // abre modal
+  };
+
+  const confirmRemove = () => {
+    if (itemToRemove !== null) {
+      removeFromCart(itemToRemove);
+      setItemToRemove(null);
+    }
+    setShowModal(false);
+  };
 
   return (
     <div className="relative flex flex-col items-center justify-center w-full min-h-screen p-3 pt-6">
@@ -64,7 +81,8 @@ export const ShoppingStore = () => {
               <Button
                 text="Remover"
                 className="text-white w-full p-2 bg-primary rounded hover:bg-secondary cursor-pointer transition duration-300"
-                onClick={() => removeFromCart(item.id)}
+                // onClick={() => removeFromCart(item.id)}
+                onClick={() => handleRemoveClick(item.id)}
               />
             </li>
           ))
@@ -89,6 +107,51 @@ export const ShoppingStore = () => {
           />
         </Link>
       </div>
+
+      {/* Modal de confirmação */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-2xl p-6 w-96 text-center shadow-lg">
+            {itemToRemove ? (
+              <>
+                <h2 className="text-xl font-semibold mb-4">
+                  Remover item do carrinho?
+                </h2>
+                <div className="flex gap-4 mt-6">
+                  <button
+                    onClick={confirmRemove}
+                    className="flex-1 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg transition"
+                  >
+                    Remover
+                  </button>
+                  <button
+                    onClick={() => setShowModal(false)}
+                    className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 rounded-lg transition"
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <h2 className="text-xl font-semibold mb-4">
+                  Pedido Confirmado 🎉
+                </h2>
+                <p className="text-gray-600 mb-6">
+                  Obrigado pela sua compra! Em breve você receberá mais
+                  informações no seu e-mail.
+                </p>
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg transition"
+                >
+                  Fechar
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
