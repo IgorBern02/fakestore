@@ -3,34 +3,37 @@ import { useCart } from "../context/CartContext";
 import { Button } from "../components/UI/Button";
 import { PlusIcon, MinusIcon } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useRemoveItem } from "../hooks/useRemoveItem";
 
 export const ShoppingStore = () => {
-  const {
-    cart,
-    clearCart,
-    increaseQuantity,
-    decreaseQuantity,
-    removeFromCart,
-  } = useCart();
+  const { cart, increaseQuantity, decreaseQuantity, removeFromCart } =
+    useCart();
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  const [showModal, setShowModal] = useState(false);
-  const [itemToRemove, setItemToRemove] = useState<number | null>(null);
+  // const [showModal, setShowModal] = useState(false);
+  // const [itemToRemove, setItemToRemove] = useState<number | null>(null);
 
-  const handleRemoveClick = (id: number) => {
-    setItemToRemove(id); // guarda o id do produto
-    setShowModal(true); // abre modal
-  };
+  // const handleRemoveClick = (id: number) => {
+  //   setItemToRemove(id); // guarda o id do produto
+  //   setShowModal(true); // abre modal
+  // };
 
-  const confirmRemove = () => {
-    if (itemToRemove !== null) {
-      removeFromCart(itemToRemove);
-      setItemToRemove(null);
-    }
-    setShowModal(false);
-  };
+  // const confirmRemove = () => {
+  //   if (itemToRemove !== null) {
+  //     removeFromCart(itemToRemove);
+  //     setItemToRemove(null);
+  //   }
+  //   setShowModal(false);
+  // };
+
+  const {
+    showModal,
+    setShowModal,
+    handleRemoveClick,
+    confirmRemove,
+    itemToRemove,
+  } = useRemoveItem();
 
   return (
     <div className="relative flex flex-col items-center justify-center w-full min-h-screen p-3 pt-6">
@@ -89,6 +92,7 @@ export const ShoppingStore = () => {
         )}
       </ul>
 
+      {/* Total e botão finalizar */}
       <div className="w-full flex flex-col items-center justify-center p-3 rounded">
         {cart.length > 0 && (
           <div className="w-full mt-6 text-black text-lg font-semibold">

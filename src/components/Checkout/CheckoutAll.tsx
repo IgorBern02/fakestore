@@ -2,27 +2,35 @@ import { MinusIcon, PlusIcon, TrashIcon } from "@phosphor-icons/react";
 import { useCart } from "../../context/CartContext";
 import { Button } from "../UI/Button";
 import { ConfirmData } from "../ConfirmData/ConfirmData";
-import { useState } from "react";
+import { useRemoveItem } from "../../hooks/useRemoveItem";
 
 export const CheckoutAll = () => {
   const { cart, updateQuantity, removeFromCart, total } = useCart();
 
-  // controla o modal e o item selecionado
-  const [showModal, setShowModal] = useState(false);
-  const [itemToRemove, setItemToRemove] = useState<number | null>(null);
+  // // controla o modal e o item selecionado
+  // const [showModal, setShowModal] = useState(false);
+  // const [itemToRemove, setItemToRemove] = useState<number | null>(null);
 
-  const handleRemoveClick = (id: number) => {
-    setItemToRemove(id); // guarda o id do produto
-    setShowModal(true); // abre modal
-  };
+  // const handleRemoveClick = (id: number) => {
+  //   setItemToRemove(id); // guarda o id do produto
+  //   setShowModal(true); // abre modal
+  // };
 
-  const confirmRemove = () => {
-    if (itemToRemove !== null) {
-      removeFromCart(itemToRemove);
-      setItemToRemove(null);
-    }
-    setShowModal(false);
-  };
+  // const confirmRemove = () => {
+  //   if (itemToRemove !== null) {
+  //     removeFromCart(itemToRemove);
+  //     setItemToRemove(null);
+  //   }
+  //   setShowModal(false);
+  // };
+
+  const {
+    showModal,
+    setShowModal,
+    handleRemoveClick,
+    confirmRemove,
+    itemToRemove,
+  } = useRemoveItem();
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center py-10 px-4 mt-20">
