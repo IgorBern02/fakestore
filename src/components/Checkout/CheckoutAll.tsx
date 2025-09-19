@@ -5,7 +5,7 @@ import { ConfirmData } from "../ConfirmData/ConfirmData";
 import { useRemoveItem } from "../../hooks/useRemoveItem";
 
 export const CheckoutAll = () => {
-  const { cart, updateQuantity, removeFromCart, total } = useCart();
+  const { cart, updateQuantity, total } = useCart();
 
   // // controla o modal e o item selecionado
   // const [showModal, setShowModal] = useState(false);

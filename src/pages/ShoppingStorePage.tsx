@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 import { useRemoveItem } from "../hooks/useRemoveItem";
 
 export const ShoppingStore = () => {
-  const { cart, increaseQuantity, decreaseQuantity, removeFromCart } =
-    useCart();
+  const { cart, increaseQuantity, decreaseQuantity } = useCart();
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -124,13 +123,13 @@ export const ShoppingStore = () => {
                 <div className="flex gap-4 mt-6">
                   <button
                     onClick={confirmRemove}
-                    className="flex-1 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg transition"
+                    className="flex-1 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg transition cursor-pointer"
                   >
                     Remover
                   </button>
                   <button
                     onClick={() => setShowModal(false)}
-                    className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 rounded-lg transition"
+                    className="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 rounded-lg transition cursor-pointer"
                   >
                     Cancelar
                   </button>

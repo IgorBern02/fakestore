@@ -57,7 +57,7 @@ export const Checkout = () => {
         <div className="mt-8">
           <button
             onClick={() => setShowModal(true)}
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition"
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition cursor-pointer"
           >
             Confirmar Pedido
           </button>
