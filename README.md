@@ -1,69 +1,62 @@
-# React + TypeScript + Vite
+# 🛒 FakeStore
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![License](https://img.shields.io/github/license/IgorBern02/fakestore)  
+![Stars](https://img.shields.io/github/stars/IgorBern02/fakestore)  
+![Issues](https://img.shields.io/github/issues/IgorBern02/fakestore)  
+![Last Commit](https://img.shields.io/github/last-commit/IgorBern02/fakestore)
 
-Currently, two official plugins are available:
+> Uma aplicação frontend de loja fake construída com **React**, **TypeScript** e **Vite**, estilizada com **Tailwind CSS**. Serve tanto para aprendizado quanto protótipos rápidos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📋 Sumário
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- [Demo](#demo)  
+- [Funcionalidades](#funcionalidades)  
+- [Tecnologias](#tecnologias)  
+- [Instalação](#instalação)  
+- [Uso](#uso)  
+- [Estrutura do Projeto](#estrutura-do-projeto)  
+- [Contribuição](#contribuição)  
+- [Licença](#licença)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🚀 Demo
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+> (Se tiver uma versão online, colocar link)  
+Exemplo: `https://seu-dominio.com/fakestore`
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⚙️ Funcionalidades
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Listagem de produtos  
+- Visualização de detalhes do produto  
+- Filtro / busca por categorias (se aplicável)  
+- Layout responsivo  
+- Feedback visual durante carregamentos (loading)  
+- Boas práticas: tipagem forte com TypeScript, lint, etc.
+
+---
+
+## 🛠 Tecnologias
+
+| Ferramenta | Propósito |
+|------------|-----------|
+| React      | Interface de usuário |
+| TypeScript | Segurança de tipos, manutenção |
+| Vite       | Bundler / dev server rápido |
+| Tailwind CSS | Estilização utilitária, rapidez no design |
+| ESLint     | Manter qualidade do código |
+| (Outras libs que o projeto usa) | ... |
+
+---
+
+## 🧰 Instalação
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/IgorBern02/fakestore.git
+cd fakestore
