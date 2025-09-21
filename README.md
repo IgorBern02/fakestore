@@ -25,7 +25,7 @@
 ## 🚀 Demo
 
 > (Se tiver uma versão online, colocar link)  
-Exemplo: `https://seu-dominio.com/fakestore`
+Exemplo: [https://seu-dominio.com/fakestore](https://fakestore-amber.vercel.app/)
 
 ---
 
@@ -49,7 +49,7 @@ Exemplo: `https://seu-dominio.com/fakestore`
 | Vite       | Bundler / dev server rápido |
 | Tailwind CSS | Estilização utilitária, rapidez no design |
 | ESLint     | Manter qualidade do código |
-| (Outras libs que o projeto usa) | ... |
+
 
 ---
 
