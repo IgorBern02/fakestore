@@ -24,7 +24,7 @@
 
 ## 🚀 Demo
 
-> [https://seu-dominio.com/fakestore](https://fakestore-amber.vercel.app/)
+> https://fakestore-amber.vercel.app/
 
 ---
 
